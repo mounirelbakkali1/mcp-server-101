@@ -22,7 +22,7 @@ First, ensure you have the necessary packages:
 pip install uv
 
 # Install MCP and dependencies using UV
-uv pip install mcp pygithub boto3
+uv add mcp[cli] pygithub boto3
 ```
 
 ### 2. Create Your Server Script
