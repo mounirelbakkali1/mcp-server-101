@@ -32,15 +32,18 @@ Create a file named `server.py` in your desired directory with your custom funct
 Example structure for `server.py`:
 
 ```python
-from mcp import MCP
+from mcp.server.fastmcp import FastMCP
 import boto3
+from dotenv import load_dotenv
 from github import Github
 
+load_dotenv()
+
 # Initialize MCP server
-server = MCP()
+mcp = FastMCP("Custom MCP Server", "0.1.0")
 
 # Define your custom functions
-@server.function()
+@mcp.tool()
 def fetch_aws_ec2_instances(region_name="us-east-1"):
     """
     Fetches and describes all EC2 instances in the specified AWS region.
@@ -50,11 +53,7 @@ def fetch_aws_ec2_instances(region_name="us-east-1"):
     ec2 = boto3.client('ec2', region_name=region_name)
     return ec2.describe_instances()
 
-# Add more custom functions as needed...
-
-# Start the server
-if __name__ == "__main__":
-    server.serve()
+# Add more custom tools as needed...
 ```
 
 ### 3. Test Your Server
